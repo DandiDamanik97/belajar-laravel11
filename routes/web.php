@@ -11,11 +11,12 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-    return view('about',['name' => 'Dandi Damanik', 'title' => 'About']);
+    return view('about',['name' => 'Dandi Damanik', 'title' => 'contact']);
 });
 
 Route::get('/posts', function () {
-    return view('posts',['title' => 'Blog','posts' => Post::all()]); //diarahkan ke view
+    $post = Post::latest()->get();
+    return view('posts',['title' => 'Blog','posts' => $post]); //diarahkan ke view
 });
 
 Route::get('/posts/{post:slug}', function(Post $post) {
